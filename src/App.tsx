@@ -22,12 +22,15 @@ interface IState {
   /**
    * Render Graph react component with state.data parse as property data
    */
-  renderGraph(); {
-    return (<Graph data={this.state.data}/>)
-      if(this.state.showGraph) {
-        return (<Graph data={this.state.data}/>)
-      }
+ renderGraph() {
+  if (this.state.showGraph) {
+    return <Graph data={this.state.data} />;
+  } else {
+    // You may want to handle the case where showGraph is false here
+    return null; // or some other appropriate fallback
   }
+}
+
 
   /**
    * Get new data from server and update the state with the new data
