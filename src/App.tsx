@@ -22,7 +22,7 @@ interface IState {
   /**
    * Render Graph react component with state.data parse as property data
    */
- renderGraph() {
+ renderGraph(); {
   if (this.state.showGraph) {
     return <Graph data={this.state.data} />;
   } else {
