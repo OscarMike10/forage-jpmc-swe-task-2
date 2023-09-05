@@ -54,14 +54,6 @@ class App extends Component<{}, IState> {
     }
   }, 100);
 }
-      // Update the state by creating a new array of data that consists of
-      // Previous data in the state and the new data from server
-    this.setState((prevState) => ({
-  data: [...prevState.data, ...serverResponds],
-}));
-
-class App extends React.Component {}
-
 
   /**
    * Render the App react component
