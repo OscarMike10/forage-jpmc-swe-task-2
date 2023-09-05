@@ -7,7 +7,7 @@ import './Graph.css';
  * Props declaration for <Graph />
  */
 interface IProps {
-  data: ServerRespond[],
+  data: ServerRespond[];
 }
 
 /**
@@ -15,7 +15,7 @@ interface IProps {
  * This interface acts as a wrapper for Typescript compiler.
  */
 interface PerspectiveViewerElement extends HTMLElement {
-  load: (table: Table) => void,
+  load: (table: Table) => void;
 }
 
 /**
