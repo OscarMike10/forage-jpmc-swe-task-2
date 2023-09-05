@@ -60,6 +60,8 @@ class App extends Component<{}, IState> {
   data: [...prevState.data, ...serverResponds],
 }));
 
+class App extends React.Component {}
+
 
   /**
    * Render the App react component
