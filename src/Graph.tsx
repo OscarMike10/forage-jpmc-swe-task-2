@@ -62,15 +62,27 @@ class Graph extends Component<IProps, {}> {
   componentDidUpdate(prevProps: IProps) {
     // Every time the data props is updated, insert the data into Perspective table
     if (this.table && this.props.data !== prevProps.data) {
-      // Format the data from ServerRespond to the schema
-      const formattedData = this.props.data.map((el: ServerRespond) => ({
-        stock: el.stock,
-        top_ask_price: el.top_ask?.price || 0,
-        top_bid_price: el.top_bid?.price || 0,
-        timestamp: el.timestamp,
-      }));
+      // Define a type for the table data
+type TableData = {
+  stock: string;
+  top_ask_price: number;
+  top_bid_price: number;
+  timestamp: Date;
+}[];
 
-      this.table.update(formattedData);
+// ...
+
+// Update the type of `formattedData`
+const formattedData: TableData = this.props.data.map((el: ServerRespond) => ({
+  stock: el.stock,
+  top_ask_price: el.top_ask?.price || 0,
+  top_bid_price: el.top_bid?.price || 0,
+  timestamp: el.timestamp,
+}));
+
+// Update the table with `formattedData`
+this.table.update(formattedData);
+
     }
   }
 
