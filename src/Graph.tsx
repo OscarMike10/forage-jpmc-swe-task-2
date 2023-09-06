@@ -51,6 +51,12 @@ class Graph extends Component<IProps, {}> {
 
     if (this.table) {
       // Load the `table` in the `<perspective-viewer>` DOM reference.
+type TableData = {
+  stock: string;
+  top_ask_price: number;  // Change 'Number' to 'number'
+  top_bid_price: number;  // Change 'Number' to 'number'
+  timestamp: string;
+};
 
       // Add more Perspective configurations here.
       elem.load(this.table);
