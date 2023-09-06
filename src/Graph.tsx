@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from '@jpmorganchase/perspective';
+import { Table } from '@finos/perspective';
 import { ServerRespond } from './DataStreamer';
 import './Graph.css';
 /**
@@ -23,7 +23,7 @@ interface PerspectiveViewerElement extends HTMLElement {
       elem.load(this.table);
       elem.setAttribute('view', 'y_line')
       elem.setAttribute('column-pivots', '["stock"]')
-      elem.setAttribute('row-pivots', '["timestamp"]')
+      elem.setAttribute('row_pivots', '["timestamp"]')
       elem.setAttribute('columns', '["top_ask_price"]')
       elem.setAttribute('aggregates', `
         {"stock": "distinct count",
