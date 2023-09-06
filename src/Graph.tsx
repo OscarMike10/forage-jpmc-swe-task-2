@@ -3,6 +3,14 @@ import { Table } from '@finos/perspective';
 import { ServerRespond } from './DataStreamer';
 import './Graph.css';
 
+// Define the TableData type
+type TableData = {
+  stock: string;
+  top_ask_price: number;
+  top_bid_price: number;
+  timestamp: string; // Use string for ISO timestamps
+};
+
 /**
  * Props declaration for <Graph />
  */
@@ -60,16 +68,22 @@ class Graph extends Component<IProps, {}> {
   }
 
   componentDidUpdate(prevProps: IProps) {
-    // Every time the data props is updated, insert the data into Perspective table
+    // Every time the data prop is updated, insert the data into the Perspective table
     if (this.table && this.props.data !== prevProps.data) {
       // Format the data and update the table with the new data
-      this.table.update(this.props.data.map((el: ServerRespond) => ({
+      const formattedData: TableData[] = this.props.data.map((el: ServerRespond) => ({
         stock: el.stock,
         top_ask_price: el.top_ask ? el.top_ask.price : 0,
         top_bid_price: el.top_bid ? el.top_bid.price : 0,
-        timestamp: el.timestamp,
-      })));
+        timestamp: el.timestamp.toISOString(), // Convert timestamp to ISO string
+      }));
+
+      this.table.update(formattedData);
     }
+  }
+
+  render() {
+    return null; // You can return a non-null element if needed
   }
 }
 
