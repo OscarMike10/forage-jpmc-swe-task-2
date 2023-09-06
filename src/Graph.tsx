@@ -71,7 +71,17 @@ type TableData = {
   timestamp: Date;
 }[];
 
-// ...
+// ... (previous code)
+
+// Define the type for table data
+type TableData = {
+  stock: string;
+  top_ask_price: number;
+  top_bid_price: number;
+  timestamp: Date;
+}[];
+
+// ... (rest of your component code)
 
 // Update the type of `formattedData`
 const formattedData: TableData = this.props.data.map((el: ServerRespond) => ({
@@ -80,6 +90,8 @@ const formattedData: TableData = this.props.data.map((el: ServerRespond) => ({
   top_bid_price: el.top_bid?.price || 0,
   timestamp: el.timestamp,
 }));
+
+// ... (rest of your component code)
 
 // Update the table with `formattedData`
 if (this.table && this.props.data !== prevProps.data) {
@@ -90,9 +102,11 @@ if (this.table && this.props.data !== prevProps.data) {
     timestamp: el.timestamp,
   })));
 }
+// ... (previous code)
 
-
-  }
+// Your component class
+class Graph extends Component<IProps, {}> {
+  // ... (component code)
 }
 
-export default Graph;
+export default Graph; // Add this line

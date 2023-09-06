@@ -6,6 +6,7 @@ import './App.css';
 interface IState {
   data: ServerRespond[];
   showGraph: boolean;
+  loading: boolean; // Add loading state
 }
 
 class App extends Component<{}, IState> {
@@ -15,22 +16,20 @@ class App extends Component<{}, IState> {
     this.state = {
       data: [],
       showGraph: false,
+      loading: false, // Initialize loading state
     };
   }
 
-  renderGraph() {
-    if (this.state.showGraph) {
-      return <Graph data={this.state.data} />;
-    } else {
-      return null;
-    }
-  }
-
+  // Handle data fetching and streaming
   getDataFromServer() {
+    if (this.state.loading) return; // Don't fetch data when already loading
+
+    this.setState({ loading: true }); // Set loading to true before fetching
+
     let x = 0;
     const interval = setInterval(() => {
       DataStreamer.getData((serverResponds: ServerRespond[]) => {
-        this.setState({ data: serverResponds, showGraph: true });
+        this.setState({ data: serverResponds, showGraph: true, loading: false }); // Update loading state after fetching
       });
 
       x++;
@@ -43,19 +42,21 @@ class App extends Component<{}, IState> {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          Bank & Merge Co Task 2
-        </header>
+        <header className="App-header">Bank & Merge Co Task 2</header>
         <div className="App-content">
-          <button className="btn btn-primary Stream-button" onClick={() => { this.getDataFromServer() }}>
-            Start Streaming Data
+          <button
+            className="btn btn-primary Stream-button"
+            onClick={() => {
+              this.getDataFromServer();
+            }}
+            disabled={this.state.loading} // Disable button when loading
+          >
+            {this.state.loading ? 'Streaming Data...' : 'Start Streaming Data'}
           </button>
-          <div className="Graph">
-            {this.renderGraph()}
-          </div>
+          <div className="Graph">{this.state.showGraph && <Graph data={this.state.data} />}</div>
         </div>
       </div>
-    )
+    );
   }
 }
 
