@@ -71,12 +71,13 @@ class Graph extends Component<IProps, {}> {
     // Every time the data prop is updated, insert the data into the Perspective table
     if (this.table && this.props.data !== prevProps.data) {
       // Format the data and update the table with the new data
-      const formattedData: TableData[] = this.props.data.map((el: ServerRespond) => ({
+     const formattedData: TableData[] = this.props.data.map((el: ServerRespond) => ({
         stock: el.stock,
         top_ask_price: el.top_ask ? el.top_ask.price : 0,
         top_bid_price: el.top_bid ? el.top_bid.price : 0,
-        timestamp: el.timestamp.toISOString(), // Convert timestamp to ISO string
-      }));
+        timestamp: el.timestamp.toISOString(),
+}));
+
 
       this.table.update(formattedData);
     }
