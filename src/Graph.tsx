@@ -3,17 +3,8 @@ import { Table } from '@finos/perspective';
 import { ServerRespond } from './DataStreamer';
 import './Graph.css';
 
-// Define the TableData type
-interface TableData {
-  stock: string;
-  top_ask_price: number;
-  top_bid_price: number;
-  timestamp: string; // Use string for ISO timestamps
-}
+// ...
 
-/**
- * Props declaration for <Graph />
- */
 interface IProps {
   data: ServerRespond[];
 }
@@ -65,9 +56,6 @@ class Graph extends Component<IProps, {}> {
     }
   }
 
-  class Graph extends Component<IProps, {}> {
-  // ...
-
   componentDidUpdate(prevProps: IProps) {
     // Every time the data prop is updated, insert the data into the Perspective table
     if (this.table && this.props.data !== prevProps.data) {
@@ -80,7 +68,6 @@ class Graph extends Component<IProps, {}> {
       })));
     }
   }
-}
 
   render() {
     return (
