@@ -85,3 +85,8 @@ class Graph extends Component<IProps, {}> {
 
   render() {
     return
+ return null; // You can return a non-null element if needed
+  }
+}
+
+export default Graph;
