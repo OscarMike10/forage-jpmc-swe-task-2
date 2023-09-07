@@ -60,7 +60,7 @@ class Graph extends Component<IProps, {}> {
     // Every time the data prop is updated, insert the data into the Perspective table
     if (this.table && this.props.data !== prevProps.data) {
       // Format the data and update the table with the new data
-      this.table.update(this.props.data.map((el: TableData) => ({
+      this.table.update(this.props.data.map((el: any) => ({
         stock: el.stock,
         top_ask_price: el.top_ask ? el.top_ask.price : 0,
         top_bid_price: el.top_bid ? el.top_bid.price : 0,
