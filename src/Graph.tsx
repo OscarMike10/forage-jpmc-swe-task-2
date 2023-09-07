@@ -42,7 +42,7 @@ class Graph extends Component<IProps, {}> {
       stock: 'string',
       top_ask_price: 'float',
       top_bid_price: 'float',
-      timestamp: 'date',
+      timestamp: 'string', // Change to 'string' for ISO timestamps
     };
 
     if (window.perspective && window.perspective.worker()) {
