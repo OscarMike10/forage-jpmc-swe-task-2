@@ -76,16 +76,13 @@ class Graph extends Component<IProps, {}> {
         timestamp: el.timestamp,
       }));
 
-      // Assuming this.table.update expects a single TableData object
-      if (formattedData.length > 0) {
-        this.table.update(formattedData[0]);
-      }
+      // Assuming this.table.update expects an array of TableData
+      this.table.update(formattedData);
     }
   }
 
   render() {
-    return
- return null; // You can return a non-null element if needed
+    return null; // You can return a non-null element if needed
   }
 }
 
