@@ -4,12 +4,12 @@ import { ServerRespond } from './DataStreamer';
 import './Graph.css';
 
 // Define the TableData type
-type TableData = {
+interface TableData {
   stock: string;
   top_ask_price: number;
   top_bid_price: number;
   timestamp: string; // Use string for ISO timestamps
-};
+}
 
 /**
  * Props declaration for <Graph />
@@ -51,14 +51,6 @@ class Graph extends Component<IProps, {}> {
 
     if (this.table) {
       // Load the `table` in the `<perspective-viewer>` DOM reference.
-type TableData = {
-  stock: string;
-  top_ask_price: number;  // Change 'Number' to 'number'
-  top_bid_price: number;  // Change 'Number' to 'number'
-  timestamp: string;
-};
-
-      // Add more Perspective configurations here.
       elem.load(this.table);
       elem.setAttribute('view', 'y_line');
       elem.setAttribute('column-pivots', '["stock"]');
@@ -76,38 +68,20 @@ type TableData = {
   componentDidUpdate(prevProps: IProps) {
     // Every time the data prop is updated, insert the data into the Perspective table
     if (this.table && this.props.data !== prevProps.data) {
-  // Format the data and update the table with the new data
-  const formattedData: TableData[] = this.props.data.map((el: ServerRespond) => ({
-    stock: el.stock,
-    top_ask_price: el.top_ask ? el.top_ask.price : 0,
-    top_bid_price: el.top_bid ? el.top_bid.price : 0,
-    timestamp: el.timestamp,
-  }));
+      // Format the data and update the table with the new data
+      const formattedData: TableData[] = this.props.data.map((el: ServerRespond) => ({
+        stock: el.stock,
+        top_ask_price: el.top_ask ? el.top_ask.price : 0,
+        top_bid_price: el.top_bid ? el.top_bid.price : 0,
+        timestamp: el.timestamp,
+      }));
 
-  // Assuming this.table.update expects a single TableData object
-  if (formattedData.length > 0) {
-    this.table.update(formattedData[0]);
+      // Assuming this.table.update expects a single TableData object
+      if (formattedData.length > 0) {
+        this.table.update(formattedData[0]);
+      }
+    }
   }
-}
-In this code, we ensure that formattedData is an array of TableData, and we use number instead of Number for the top_ask_price and top_bid_price properties. Additionally, we check if formattedData has any elements before passing it to this.table.update. You may need to adjust the code according to the specific requirements and types in your project.
-
-
-
-
-
-
-
-
- interface TableData {
-  stock: string;
-  top_ask_price: number;
-  top_bid_price: number;
-  timestamp: string;
-}
 
   render() {
-    return null; // You can return a non-null element if needed
-  }
-}
-
-export default Graph;
+    return
