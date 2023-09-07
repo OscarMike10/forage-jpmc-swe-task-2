@@ -65,24 +65,31 @@ class Graph extends Component<IProps, {}> {
     }
   }
 
+  class Graph extends Component<IProps, {}> {
+  // ...
+
   componentDidUpdate(prevProps: IProps) {
     // Every time the data prop is updated, insert the data into the Perspective table
     if (this.table && this.props.data !== prevProps.data) {
       // Format the data and update the table with the new data
-      const formattedData: TableData[] = this.props.data.map((el: ServerRespond) => ({
+      this.table.update(this.props.data.map((el: TableData) => ({
         stock: el.stock,
         top_ask_price: el.top_ask ? el.top_ask.price : 0,
         top_bid_price: el.top_bid ? el.top_bid.price : 0,
         timestamp: el.timestamp,
-      }));
-
-      // Assuming this.table.update expects an array of TableData
-      this.table.update(formattedData);
+      })));
     }
   }
+}
 
   render() {
-    return null; // You can return a non-null element if needed
+    return (
+      // Here, you should add the content you want to render in your Graph component.
+      // You can add charts or any other necessary elements.
+      <div className="graph-container">
+        {/* Add your content here */}
+      </div>
+    );
   }
 }
 
